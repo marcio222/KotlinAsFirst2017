@@ -62,6 +62,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int = TODO()
 
+
 /**
  * Простая
  *
