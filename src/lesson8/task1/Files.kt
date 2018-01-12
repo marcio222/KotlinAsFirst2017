@@ -53,7 +53,24 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    val result = mutableMapOf<String, Int>()
+    val text = File(inputName).readText().toLowerCase()
+    for (str in substrings) {
+        val str1 = str.toLowerCase()
+        var times = -1
+        var indexOfStr = 0
+        var index = -1
+        while (indexOfStr != -1) {
+            indexOfStr = text.indexOf(str1, index + 1)
+            times++
+            index = indexOfStr
+        }
+        result.put(str, times)
+    }
+    return result
+}
+
 
 
 /**
@@ -70,7 +87,16 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) {
-    TODO()
+    val text = File(inputName).readLines()
+    val writer = File(outputName).bufferedWriter()
+    val soglasnie = listOf('ж', 'Ж', 'ш', 'Ш', 'ч', 'Ч', 'щ', 'Щ')
+    val glasnie = mapOf('ы' to 'и', 'Ы' to 'И', 'ю' to 'у', 'Ю' to 'У', 'я' to 'а', 'Я' to 'А')
+    for (line in text) {
+        val newLine = line.mapIndexed { i, c -> if (i > 0 && glasnie.containsKey(c) && soglasnie.contains(line[i - 1])) glasnie[c]!! else c }
+        writer.write(newLine.joinToString(separator = ""))
+        writer.newLine()
+    }
+    writer.close()
 }
 
 /**
@@ -91,7 +117,19 @@ fun sibilants(inputName: String, outputName: String) {
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-    TODO()
+    var max = 0
+    val outputStream = File(outputName).bufferedWriter()
+    for (line in File(inputName).readLines()) {
+        if (line.trim().length > max) max = line.trim().length
+    }
+    for (line in File(inputName).readLines()) {
+        val s = line.trim()
+        val l = s.length
+        for (i in 0 until (max - l) / 2) outputStream.write(" ")
+        outputStream.write(s)
+        outputStream.newLine()
+    }
+    outputStream.close()
 }
 
 /**

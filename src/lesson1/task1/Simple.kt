@@ -82,7 +82,7 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double {
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((x2 - x1) - (y2 - y2))
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt(sqr(x2 - x1) + sqr(y2 - y1))
 
 
 
@@ -104,11 +104,7 @@ fun thirdDigit(number: Int): Int = floorDiv(number % 1000, 100)
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
 fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
-    val x1 = (hoursArrive)
-    val x2 = (minutesDepart)
-    val x3 = (hoursArrive)
-    val x4 = (minutesArrive)
-    return ((hoursArrive - hoursArrive) * 60) - (minutesArrive - minutesDepart)
+    return ((hoursArrive - hoursDepart) * 60) + (minutesArrive - minutesDepart)
 }
 /**
  * Простая
@@ -118,11 +114,11 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double {
-    val p1 = (initial * percent).toDouble()
+    val p1 = initial * (percent / 100.0)
     val x1 = (initial + p1)
-    val p2 = (initial * x1)
-    val x2 = (percent + x1)
-    val p3 = (percent * x2)
+    val p2 = x1 * (percent / 100.0)
+    val x2 = (p2 + x1)
+    val p3 = x2 * (percent / 100.0)
     return (p3 + x2)
 }
 /**
