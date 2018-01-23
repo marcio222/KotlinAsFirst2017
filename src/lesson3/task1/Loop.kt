@@ -125,9 +125,10 @@ fun lcm(m: Int, n: Int): Int = m / gcd(m, n) * n
  */
 fun minDivisor(n: Int): Int {
     var result = 1
-    for (i in n downTo 2) {
+    for (i in 2..n) {
         if (n % i == 0) {
             result = i
+            break
 
         }
     }
@@ -141,8 +142,12 @@ fun minDivisor(n: Int): Int {
  */
 fun maxDivisor(n: Int): Int {
     var result = 1
-    for (i in 1..n / 2) {
+    for (i in n / 2 downTo 2) {
         if (n % i == 0) {
+            if (n % i == 0) {
+                result = i
+                break
+            }
 
         }
     }
@@ -303,10 +308,13 @@ fun fibSequenceDigit(n: Int): Int {
     var x = 1
     var number = n.toDouble()
     while (number > 0) {
-        if ((number - digitNumber(fib(x))) <= 0)
-            result = (fib(x) % Math.pow(10.0, digitNumber(fib(x)) - number + 1)) / Math.pow(10.0, digitNumber(fib(x)) - number)
-        number = number - digitNumber(fib(x))
+        var m = Math.pow(10.0, digitNumber(f) - number)
+        if ((number - digitNumber(f)) <= 0)
+            result = (f % (m * 10)) / m
+        number -= digitNumber(f)
         x++
+        f = fib(x)
+
     }
     return result.toInt()
 }

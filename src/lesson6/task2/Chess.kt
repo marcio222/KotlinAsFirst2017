@@ -27,8 +27,7 @@ data class Square(val column: Int, val row: Int) {
      */
     fun notation(): String {
         if (!inside()) return ""
-        val ah = "abcdefgh"
-        return ah[column - 1] + "$row"
+        return (column + 96).toChar() + "$row"
     }
 }
 
@@ -43,13 +42,16 @@ fun square(notation: String): Square {
     val columnChar = listOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
     try {
         if (notation.length != 2) throw IllegalArgumentException("square")
-        if (notation[0] !in columnChar) throw IllegalArgumentException("square")
         val ansRow = notation[1].toInt() - '0'.toInt()
-        val ansColumn = columnChar.indexOf(notation[0]) + 1
-        if (ansRow !in 1..8) throw IllegalArgumentException("square")
+        val ansColumn = (notation[0].toInt()) - 96
+        if ((ansRow !in 1..8) || (ansColumn !in 1..8)) throw || legalArgumentException("square")
         return Square(ansColumn, ansRow)
     } catch (error: NumberFormatException) {
-        throw IllegalArgumentException("square")
+        if (ansRow !in 1..8) throw IllegalArgumentException("square")
+        return Square(ansColumn, ansRow)
+        catch(error: NumberFormatException)
+        throw
+        IllegalArgumentException("square")
     }
 }
 

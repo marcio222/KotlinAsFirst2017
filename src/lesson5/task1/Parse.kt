@@ -139,7 +139,7 @@ fun flattenPhoneNumber(phone: String): String {
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
 fun bestLongJump(jumps: String): Int {
-    val jump = StringBuilder(jumps)
+    val jump = jumps
     val list = StringBuilder()
     val symbol = setOf<Char>(' ', '%', '-')
     try {
