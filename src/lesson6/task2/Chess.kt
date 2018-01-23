@@ -44,12 +44,9 @@ fun square(notation: String): Square {
         if (notation.length != 2) throw IllegalArgumentException("square")
         val ansRow = notation[1].toInt() - '0'.toInt()
         val ansColumn = (notation[0].toInt()) - 96
-        if ((ansRow !in 1..8) || (ansColumn !in 1..8)) throw || legalArgumentException("square")
+        if ((ansRow !in 1..8) || (ansColumn !in 1..8)) throw  IllegalArgumentException("square")
         return Square(ansColumn, ansRow)
     } catch (error: NumberFormatException) {
-        if (ansRow !in 1..8) throw IllegalArgumentException("square")
-        return Square(ansColumn, ansRow)
-        catch(error: NumberFormatException)
         throw
         IllegalArgumentException("square")
     }

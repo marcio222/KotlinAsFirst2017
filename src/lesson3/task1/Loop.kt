@@ -307,6 +307,7 @@ fun fibSequenceDigit(n: Int): Int {
     var result = 1.0
     var x = 1
     var number = n.toDouble()
+    var f = fib(x)
     while (number > 0) {
         var m = Math.pow(10.0, digitNumber(f) - number)
         if ((number - digitNumber(f)) <= 0)
