@@ -144,11 +144,8 @@ fun maxDivisor(n: Int): Int {
     var result = 1
     for (i in n / 2 downTo 2) {
         if (n % i == 0) {
-            if (n % i == 0) {
                 result = i
                 break
-            }
-
         }
     }
     return result
